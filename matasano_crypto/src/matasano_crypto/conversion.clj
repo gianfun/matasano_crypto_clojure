@@ -54,6 +54,14 @@
   [hexstring]
   (bytes->base64 (hexstring->bytes hexstring)))
 
+(defn xor-bytes
+  "XORs two equal-sized byte buffers"
+  [buffer1 buffer2]
+  (map #(bit-xor %1 %2) buffer1 buffer2))
 
+(defn xor-hexstrings
+  "XORs two equal-sized hexstring"
+  [string1 string2]
+  (xor-bytes (hexstring->bytes string1) (hexstring->bytes string2)))
 
 

@@ -86,3 +86,15 @@
       (conversion/hexstring->base64 hex-string) => base64)
 
 
+
+(def equal-length-hexstring-1 "1c0111001f010100061a024b53535009181c")
+(def equal-length-hexstring-2 "686974207468652062756c6c277320657965")
+(def equal-length-hexstring-xor "746865206b696420646f6e277420706c6179")
+
+
+(fact "XORs two equal-length byte buffers"
+      (conversion/xor-bytes (conversion/hexstring->bytes equal-length-hexstring-1) (conversion/hexstring->bytes equal-length-hexstring-2)) => (conversion/hexstring->bytes equal-length-hexstring-xor))
+
+(fact "XORs two equal-length hexstrings"
+      (conversion/xor-hexstrings equal-length-hexstring-1 equal-length-hexstring-2) => (conversion/hexstring->bytes equal-length-hexstring-xor))
+
